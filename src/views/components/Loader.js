@@ -15,7 +15,7 @@ const Loader = ({visible = false}) => {
     visible && (
       <View style={[style.container, {height, width}]}>
         <View style={style.loader}>
-          <ActivityIndicator size="large" color={COLORS.darkGreen} />
+          <ActivityIndicator style={{marginLeft: 50}} size="large" color={COLORS.darkGreen} />
           <Text
             style={{
               marginLeft: 10,

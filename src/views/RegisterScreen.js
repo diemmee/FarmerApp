@@ -1,5 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, Component} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import {useNavigation} from '@react-navigation/native';
 import {
   SafeAreaView,
   Image,
@@ -68,9 +69,10 @@ const RegisterScreen = ({navigation}) => {
     setTimeout(() => {
       try {
         setLoading(false);
-        AsyncStorage.setItem('user', JSON.stringify(inputs));
+        AsyncStorage.setItem('userData', JSON.stringify(inputs));
         navigation.navigate('LoginScreen');
       } catch (error) {
+        console.log('bị lỗi', error);
         Alert.alert('Error', 'bà sai chỗ nào rồi đó bà');
       }
     }, 3000);
@@ -84,19 +86,18 @@ const RegisterScreen = ({navigation}) => {
     setErrors(prevState => ({...prevState, [input]: errorMessage}));
   };
 
+  const [hidePassword, setHidePassword] = useState(false);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#085728" barStyle={'light-content'} />
       <Loader visible={loading} />
       <View>
-        {/* <View style={{height: 100}}>
-          <Text style={styles.title}>Farmer</Text>
-        </View> */}
         <View style={styles.sectionWrap}>
           <Text style={styles.Register}>Đăng ký</Text>
 
           {/*input */}
-          <View style={{marginTop: 20}}>
+          <View >
             <Input
               placeholder="Nhập vào địa chỉ email"
               label="Email"
@@ -105,7 +106,6 @@ const RegisterScreen = ({navigation}) => {
               }}
               onChangeText={text => handleOnChange(text, 'email')}
               error={errors.email}
-
             />
             <Input
               placeholder="Nhập vào Họ và Tên"
@@ -115,7 +115,6 @@ const RegisterScreen = ({navigation}) => {
               }}
               onChangeText={text => handleOnChange(text, 'fullname')}
               error={errors.fullname}
-
             />
             <Input
               keyboardType="numeric"
@@ -126,7 +125,6 @@ const RegisterScreen = ({navigation}) => {
               }}
               onChangeText={text => handleOnChange(text, 'phone')}
               error={errors.phone}
-
             />
           </View>
 
@@ -140,7 +138,8 @@ const RegisterScreen = ({navigation}) => {
               }}
               onChangeText={text => handleOnChange(text, 'password')}
               error={errors.password}
-              password
+              passwordsds
+              secureTextEntry={hidePassword ? false : true}
             />
             <TouchableOpacity
               style={{
@@ -148,25 +147,34 @@ const RegisterScreen = ({navigation}) => {
                 position: 'absolute',
                 right: 15,
                 top: 35,
+              }}
+              onPress={() => {
+                setHidePassword(!hidePassword);
               }}>
-              <Image source={require('../assets/images/eye.png')} />
+              {hidePassword ? (
+                <Image source={require('../assets/images/eye.png')} />
+              ) : (
+                <Image source={require('../assets/images/hidden.png')} />
+              )}
             </TouchableOpacity>
           </View>
 
           {/* button register */}
-          <View>
+          <View style={{marginTop: -5}}>
             <Button title="Đăng ký" onPress={validate} />
-            <Text
-              onPress={() => navigation.navigate('LoginScreen')}
-              style={{
-                color: COLORS.black,
-                fontSize: 16,
-                fontWeight: 'bold',
-                textAlign: 'center',
-                marginVertical: 10,
-              }}>
-              Đã có tài khoản? Đăng nhập
-            </Text>
+
+            <TouchableOpacity
+              onPress={() => navigation.navigate('LoginScreen')}>
+              <Text
+                style={{
+                  color: COLORS.black,
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}>
+                Đã có tài khoản? Đăng nhập
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -180,15 +188,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 
-  //   title: {
-  //     marginTop: 70,
-  //     marginLeft: 'auto',
-  //     marginRight: 'auto',
-  //     fontSize: 40,
-  //     color: COLORS.white,
-  //     fontFamily: 'HappyMonkey-Regular',
-  //   },
-
   sectionWrap: {
     height: '100%',
     backgroundColor: COLORS.white,
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
   },
 
   Register: {
-    marginTop: 50,
+    marginTop: 40,
     fontFamily: 'Poppins-Bold',
     fontSize: 25,
     left: 110,

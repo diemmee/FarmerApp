@@ -4,14 +4,12 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Image,
   TouchableOpacity,
 } from 'react-native';
 import COLORS from '../../const/colors';
 
 const Input = ({label, error, password, onFocus = () => {}, ...props}) => {
   const [isFocused, setIsFocused] = React.useState(false);
-  const [hidePassword, setHidePassword] = React.useState(password);
   return (
     <View style={{marginBottom: 20}}>
       <Text style={styles.labels}>{label}</Text>
@@ -27,7 +25,6 @@ const Input = ({label, error, password, onFocus = () => {}, ...props}) => {
           },
         ]}>
         <TextInput
-          secureTextEntry={hidePassword}
           autoCorrect={false}
           onFocus={() => {
             onFocus();
