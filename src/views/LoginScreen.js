@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   SafeAreaView,
@@ -17,7 +17,7 @@ import Input from './components/Input';
 import Button from './components/Button';
 import Loader from './components/Loader';
 
-const RegisterScreen = ({navigation}) => {
+const LoginScreen = ({navigation}) => {
   const [inputs, setInputs] = React.useState({
     email: '',
     fullname: '',
@@ -40,11 +40,6 @@ const RegisterScreen = ({navigation}) => {
       isValid = false;
     }
 
-    if (!inputs.fullname) {
-      handleError('Vui lòng đầy đủ Họ và Tên', 'fullname');
-      isValid = false;
-    }
-
     if (!inputs.password) {
       handleError('Vui lòng nhập mật khẩu', 'password');
       isValid = false;
@@ -63,10 +58,9 @@ const RegisterScreen = ({navigation}) => {
     setTimeout(() => {
       try {
         setLoading(false);
-        AsyncStorage.setItem('userData', JSON.stringify(inputs));
-        navigation.navigate('LoginScreen');
+        AsyncStorage.setItem('user', JSON.stringify(inputs));
+        navigation.navigate('RegisterScreen');
       } catch (error) {
-        console.log('bị lỗi', error);
         Alert.alert('Error', 'bà sai chỗ nào rồi đó bà');
       }
     }, 3000);
@@ -87,11 +81,14 @@ const RegisterScreen = ({navigation}) => {
       <StatusBar backgroundColor="#085728" barStyle={'light-content'} />
       <Loader visible={loading} />
       <View>
+        <View style={{height: 200}}>
+          <Text style={styles.title}>Farmer</Text>
+        </View>
         <View style={styles.sectionWrap}>
-          <Text style={styles.Register}>Đăng ký</Text>
+          <Text style={styles.Register}>Đăng nhập</Text>
 
           {/*input */}
-          <View>
+          <View style={{marginTop: 20}}>
             <Input
               placeholder="Nhập vào địa chỉ email"
               label="Email"
@@ -100,15 +97,6 @@ const RegisterScreen = ({navigation}) => {
               }}
               onChangeText={text => handleOnChange(text, 'email')}
               error={errors.email}
-            />
-            <Input
-              placeholder="Nhập vào Họ và Tên"
-              label="Họ và Tên"
-              onFocus={() => {
-                handleError(null, 'fullname');
-              }}
-              onChangeText={text => handleOnChange(text, 'fullname')}
-              error={errors.fullname}
             />
           </View>
 
@@ -122,8 +110,7 @@ const RegisterScreen = ({navigation}) => {
               }}
               onChangeText={text => handleOnChange(text, 'password')}
               error={errors.password}
-              passwordsds
-              secureTextEntry={hidePassword ? false : true}
+              password
             />
             <TouchableOpacity
               style={{
@@ -144,20 +131,19 @@ const RegisterScreen = ({navigation}) => {
           </View>
 
           {/* button register */}
-          <View style={{marginTop: -5}}>
-            <Button title="Đăng ký" onPress={validate} />
-
-            <TouchableOpacity
-              onPress={() => navigation.navigate('LoginScreen')}>
+          <View>
+            <Button title="Đăng nhập" onPress={validate} />
+            <TouchableOpacity>
               <Text
+                onPress={() => navigation.navigate('RegisterScreen')}
                 style={{
-                  marginTop: 10,
                   color: COLORS.black,
                   fontSize: 16,
                   fontWeight: 'bold',
                   textAlign: 'center',
+                  marginVertical: 10,
                 }}>
-                Đã có tài khoản? Đăng nhập
+                Chưa có tài khoản? Đăng ký
               </Text>
             </TouchableOpacity>
           </View>
@@ -170,17 +156,27 @@ const RegisterScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.darkGreen,
-    height: '100%',
+    height: 500,
+  },
+
+  title: {
+    marginTop: 70,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    fontSize: 40,
+    color: COLORS.white,
+    fontFamily: 'HappyMonkey-Regular',
   },
 
   sectionWrap: {
     height: '100%',
     backgroundColor: COLORS.white,
     paddingHorizontal: 30,
+    borderRadius: 70,
   },
 
   Register: {
-    marginTop: 40,
+    marginTop: 50,
     fontFamily: 'Poppins-Bold',
     fontSize: 25,
     left: 110,
@@ -188,4 +184,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterScreen;
+export default LoginScreen;
