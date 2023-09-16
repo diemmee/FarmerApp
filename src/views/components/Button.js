@@ -19,8 +19,8 @@ const Button = ({title, onPress = () => {}}) => {
       <Text
         style={{
           color: COLORS.white,
-          fontFamily: 'Poppins-Bold',
-          fontSize: 15,
+          fontFamily: 'Poppins-Medium',
+          fontSize: 19,
         }}>
         {title}
       </Text>
