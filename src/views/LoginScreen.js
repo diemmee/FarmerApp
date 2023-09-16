@@ -111,6 +111,7 @@ const LoginScreen = ({navigation}) => {
               onChangeText={text => handleOnChange(text, 'password')}
               error={errors.password}
               password
+              secureTextEntry={hidePassword ? false : true}
             />
             <TouchableOpacity
               style={{
