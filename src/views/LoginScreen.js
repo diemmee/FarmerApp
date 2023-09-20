@@ -18,15 +18,15 @@ import Button from "./components/Button";
 import Loader from "./components/Loader";
 
 const LoginScreen = ({ navigation }) => {
-    const [inputs, setInputs] = React.useState({
+    const [inputs, setInputs] = useState({
         email: "",
         fullname: "",
         phone: "",
         password: "",
     });
 
-    const [errors, setErrors] = React.useState({});
-    const [loading, setLoading] = React.useState(false);
+    const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
 
     const validate = () => {
         Keyboard.dismiss();
@@ -119,10 +119,15 @@ const LoginScreen = ({ navigation }) => {
                         />
                         <TouchableOpacity
                             style={{
+                                width: 50,
+                                height: 58,
                                 marginTop: 20,
                                 position: "absolute",
-                                right: 15,
-                                top: 35,
+                                right: 0,
+                                top: 20,
+                                justifyContent: "center",
+                                alignItems: "center",
+                                borderRadius: 10,
                             }}
                             onPress={() => {
                                 setHidePassword(!hidePassword);
@@ -173,7 +178,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginTop: 70,
+        marginTop: 40,
         marginLeft: "auto",
         marginRight: "auto",
         fontSize: 40,
@@ -182,7 +187,7 @@ const styles = StyleSheet.create({
     },
 
     sectionWrap: {
-        height: "100%",
+        height: "120%",
         backgroundColor: COLORS.white,
         paddingHorizontal: 30,
         borderRadius: 70,
@@ -192,7 +197,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         fontFamily: "Poppins-Bold",
         fontSize: 25,
-        left: 110,
+        textAlign: "center",
         color: COLORS.darkGreen,
     },
 });

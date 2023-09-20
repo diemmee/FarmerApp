@@ -18,15 +18,15 @@ import Button from './components/Button';
 import Loader from './components/Loader';
 
 const RegisterScreen = ({navigation}) => {
-  const [inputs, setInputs] = React.useState({
+  const [inputs, setInputs] = useState({
     email: '',
     fullname: '',
     phone: '',
     password: '',
   });
 
-  const [errors, setErrors] = React.useState({});
-  const [loading, setLoading] = React.useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     Keyboard.dismiss();
@@ -122,15 +122,20 @@ const RegisterScreen = ({navigation}) => {
               }}
               onChangeText={text => handleOnChange(text, 'password')}
               error={errors.password}
-              passwordsds
+              password
               secureTextEntry={hidePassword ? false : true}
             />
             <TouchableOpacity
               style={{
+				width: 50,
+				height: 58,
                 marginTop: 20,
                 position: 'absolute',
-                right: 15,
-                top: 35,
+                right: 0,
+                top: 20,
+				justifyContent: 'center', 
+				alignItems: 'center',
+				borderRadius: 10,
               }}
               onPress={() => {
                 setHidePassword(!hidePassword);
