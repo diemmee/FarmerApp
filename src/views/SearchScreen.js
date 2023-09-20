@@ -1,125 +1,68 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
     SafeAreaView,
     StyleSheet,
     View,
     Text,
     Image,
-    StatusBar,
+    TextInput,
+    TouchableOpacity,
+    ScrollView,
 } from "react-native";
 import COLORS from "../const/colors";
-import Button from "./components/Button";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { RiceDiseases } from "../data/info";
+import SearchList from "./components/SearchList";
 
-const Home = ({ navigation }) => {
+const SearchScreen = () => {
+    const [search, setSearch] = useState();
+
+    const [isPressed, setIsPressed] = useState(false);
+    const handlePress = () => {
+        setIsPressed(!isPressed);
+    };
     return (
-        <SafeAreaView
-            style={{ backgroundColor: COLORS.white, paddingHorizontal: 30 }}
-        >
-            <StatusBar backgroundColor="#085728" barStyle={"light-content"} />
-            <View>
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
                 <View style={{ height: 100 }}>
                     <Text style={styles.title}>Farmer</Text>
                 </View>
-                <View>
-                    <Image
-                        style={styles.homeMainImage}
-                        source={require("../assets/images/homeMainImage.jpg")}
-                    />
-                </View>
-                <View
-                    style={{
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <View style={{ marginTop: 20 }}>
-                        <View
-                            style={{
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Image
-                                style={{ width: 110, height: 110 }}
-                                source={require("../assets/images/homeFrameCamera.png")}
-                            />
-                            <Text
-                                style={{
-                                    marginTop: 10,
-                                    width: 100,
-                                    textAlign: "center",
-                                    fontSize: 18,
-                                    fontFamily: "Poppins-Medium",
-                                }}
-                            >
-                                Chụp hoặc tải ảnh lên
-                            </Text>
-                        </View>
-                        <View
-                            style={{ position: "absolute", left: 15, top: 17 }}
-                        >
-                            <Image
-                                style={{ width: 77, height: 77 }}
-                                source={require("../assets/images/homeRiceImg.jpg")}
-                            />
-                        </View>
-                    </View>
-                    <Image
-                        style={{
-                            width: 30,
-                            height: 30,
-                            top: -20,
-                            marginLeft: 20,
-                            marginRight: 7,
-                        }}
-                        source={require("../assets/images/HomeChevron.png")}
-                    />
-                    <View
-                        style={{
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        <Image
-                            style={{ width: 70, height: 120, top: 20 }}
-                            source={require("../assets/images/HomeCheck.png")}
+                <View style={styles.SearchContainer}>
+                    <View style={{ flexDirection: "row" }}>
+                        <TextInput
+                            style={styles.field}
+                            placeholder="Tìm kiếm "
+                            placeholderTextColor="#f0f0f0"
+                            value={search}
+                            onChangeText={setSearch}
                         />
-                        <Text
-                            style={{
-                                marginTop: 25,
-                                width: 100,
-                                textAlign: "center",
-                                fontSize: 17,
-                                fontFamily: "Poppins-Medium",
-                            }}
-                        >
-                            Xem chẩn đoán
-                        </Text>
+                        <View pointerEvents="none">
+                            <AntDesign
+                                style={styles.searchIcon}
+                                name="search1"
+                            />
+                        </View>
                     </View>
+
+                    <SearchList list={RiceDiseases} />
                 </View>
-                <View>
-                    <Button
-                        style={{ width: "50%", height: 38 }}
-                        title={"Chụp ảnh"}
-                    />
-                    <Image
-                        style={{
-                            width: 40,
-                            height: 40,
-                            position: "absolute",
-                            left: 80,
-                            top: 15,
-                        }}
-                        source={require("../assets/images/homeCamera.png")}
-                    />
-                </View>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: COLORS.white,
+        height: "100%",
+    },
+
+    SearchContainer: {
+        paddingHorizontal: 30,
+        flex: 1,
+        paddingVertical: 30,
+    },
+
     title: {
         marginTop: 30,
         marginLeft: "auto",
@@ -128,13 +71,31 @@ const styles = StyleSheet.create({
         color: COLORS.darkGreen,
         fontFamily: "HappyMonkey-Regular",
     },
-    homeMainImage: {
-        width: 350,
-        height: 250,
-        objectFit: "cover",
-        borderRadius: 15,
-        left: -10,
+
+    field: {
+        backgroundColor: COLORS.white,
+        borderRadius: 10,
+        height: 50,
+        shadowColor: "red",
+        paddingHorizontal: 20,
+        width: "100%",
+        color: COLORS.black,
+        shadowColor: COLORS.black,
+        elevation: 5,
+    },
+
+    searchIcon: {
+        position: "absolute",
+        fontSize: 30,
+        backgroundColor: COLORS.darkGreen,
+        width: 50,
+        height: 50,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        right: 1,
+        color: COLORS.white,
+        borderRadius: 10,
     },
 });
 
-export default Home;
+export default SearchScreen;
