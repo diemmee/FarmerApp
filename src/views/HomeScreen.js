@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import COLORS from "../const/colors";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+
 
 const HomeScreen = ({ navigation }) => {
     return (
