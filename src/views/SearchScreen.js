@@ -32,7 +32,7 @@ const SearchScreen = () => {
                         <TextInput
                             style={styles.field}
                             placeholder="Tìm kiếm "
-                            placeholderTextColor="#f0f0f0"
+                            placeholderTextColor="grey"
                             value={search}
                             onChangeText={setSearch}
                         />
