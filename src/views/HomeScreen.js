@@ -7,153 +7,73 @@ import {
     Image,
     StatusBar,
     TouchableOpacity,
-		ScrollView
+    ScrollView,
 } from "react-native";
 import COLORS from "../const/colors";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
-
 
 const HomeScreen = ({ navigation }) => {
     return (
-        <SafeAreaView
-            style={{
-                backgroundColor: COLORS.white,
-                paddingHorizontal: 30,
-                height: "100%",
-            }}
-        >
+        <SafeAreaView style={styles.safeview}>
             <StatusBar backgroundColor="#085728" barStyle={"light-content"} />
             <ScrollView>
-            	<View>
-	                <View style={{ height: 100 }}>
-	                    <Text style={styles.title}>Farmer</Text>
-	                </View>
-	                <View>
-	                    <Image
-	                        style={styles.homeMainImage}
-	                        source={require("../assets/images/homeMainImage.jpg")}
-	                    />
-	                </View>
-	                <View
-	                    style={{
-	                        flexDirection: "row",
-	                        justifyContent: "center",
-	                        alignItems: "center",
-	                    }}
-	                >
-	                    <View style={{ marginTop: 50 }}>
-	                        <View
-	                            style={{
-	                                justifyContent: "center",
-	                                alignItems: "center",
-	                            }}
-	                        >
-	                            <Image
-	                                style={{ width: 110, height: 110 }}
-	                                source={require("../assets/images/homeFrameCamera.png")}
-	                            />
-	                            <Text
-	                                style={{
-	                                    marginTop: 10,
-	                                    width: 100,
-	                                    textAlign: "center",
-	                                    fontSize: 14,
-	                                    fontFamily: "Poppins-Regular",
-	                                    color: COLORS.black,
-	                                }}
-	                            >
-	                                Chụp hoặc tải ảnh lên
-	                            </Text>
-	                        </View>
-	                        <View
-	                            style={{
-	                                position: "absolute",
-	                                left: 15,
-	                                top: 17,
-	                                justifyContent: "center",
-	                                alignItems: "center",
-	                            }}
-	                        >
-	                            <Image
-	                                style={{ width: 77, height: 77 }}
-	                                source={require("../assets/images/homeRiceImg.jpg")}
-	                            />
-	                        </View>
-	                    </View>
-	                    <Image
-	                        style={{
-	                            width: 30,
-	                            height: 30,
-	                            top: -10,
-	                            marginLeft: 25,
-	                            marginRight: 7,
-	                        }}
-	                        source={require("../assets/images/HomeChevron.png")}
-	                    />
-	                    <View
-	                        style={{
-	                            justifyContent: "center",
-	                            alignItems: "center",
-	                        }}
-	                    >
-	                        <Image
-	                            style={{ width: 70, height: 120, top: 40 }}
-	                            source={require("../assets/images/HomeCheck.png")}
-	                        />
-	                        <Text
-	                            style={{
-	                                marginTop: 50,
-	                                width: 100,
-	                                textAlign: "center",
-	                                fontSize: 14,
-	                                fontFamily: "Poppins-Regular",
-	                                color: COLORS.black,
-	                            }}
-	                        >
-	                            Xem chẩn đoán
-	                        </Text>
-	                    </View>
-	                </View>
-	                <View>
-	                    <TouchableOpacity
-	                        style={{
-	                            height: 55,
-	                            width: "70%",
-	                            backgroundColor: COLORS.darkGreen,
-	                            justifyContent: "center",
-	                            alignItems: "center",
-	                            borderRadius: 10,
-	                            marginVertical: 20,
-	                            left: 50,
-	                        }}
-	                        onPress={() => navigation.navigate("CameraAction")}
-	                    >
-	                        <Text
-	                            style={{
-	                                color: COLORS.white,
-	                                fontFamily: "Poppins-Regular",
-	                                fontSize: 16,
-	                                marginLeft: 40,
-	                            }}
-	                        >
-	                            Chụp ảnh
-	                        </Text>
-	                        <AntDesign
-	                            name="camerao"
-	                            size={30}
-	                            color={COLORS.white}
-	                            style={{
-	                                width: 30,
-	                                height: 58,
-	                                position: "absolute",
-	                                left: 50,
-	                                top: 10,
-	                            }}
-	                        />
-	                    </TouchableOpacity>
-	                </View>
-	            </View>
+                <View>
+                    <View style={{ height: 100 }}>
+                        <Text style={styles.title}>Farmer</Text>
+                    </View>
+                    <View>
+                        <Image
+                            style={styles.homeMainImage}
+                            source={require("../assets/images/homeMainImage.jpg")}
+                        />
+                    </View>
+                    <View style={styles.middleSection}>
+                        <View style={{ marginTop: 50 }}>
+                            <View style={styles.homeframe}>
+                                <Image
+                                    style={{ width: 110, height: 110 }}
+                                    source={require("../assets/images/homeFrameCamera.png")}
+                                />
+                                <Text style={styles.takephoto}>
+                                    Chụp hoặc tải ảnh lên
+                                </Text>
+                            </View>
+                            <View style={styles.riceImg}>
+                                <Image
+                                    style={{ width: 77, height: 77 }}
+                                    source={require("../assets/images/homeRiceImg.jpg")}
+                                />
+                            </View>
+                        </View>
+                        <Image
+                            style={styles.chevron}
+                            source={require("../assets/images/HomeChevron.png")}
+                        />
+                        <View style={styles.chandoan}>
+                            <Image
+                                style={{ width: 70, height: 120, top: 40 }}
+                                source={require("../assets/images/HomeCheck.png")}
+                            />
+                            <Text style={styles.textchandoan}>
+                                Xem chẩn đoán
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 15 }}>
+                        <TouchableOpacity
+                            style={styles.openCam}
+                            onPress={() => navigation.navigate("OpenCamera")}
+                        >
+                            <Text style={styles.textTakephoto}>Chụp ảnh</Text>
+                            <AntDesign
+                                name="camerao"
+                                size={30}
+                                color={COLORS.white}
+                                style={styles.camerao}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
@@ -169,11 +89,82 @@ const styles = StyleSheet.create({
         fontFamily: "HappyMonkey-Regular",
     },
     homeMainImage: {
-        marginTop: 10,
+        marginTop: 20,
         width: 350,
         height: 300,
         objectFit: "cover",
         borderRadius: 15,
+    },
+    safeview: {
+        backgroundColor: COLORS.white,
+        paddingHorizontal: 30,
+        height: "100%",
+    },
+    middleSection: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    homeframe: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    takephoto: {
+        marginTop: 10,
+        width: 100,
+        textAlign: "center",
+        fontSize: 14,
+        fontFamily: "Poppins-Regular",
+        color: COLORS.black,
+    },
+    riceImg: {
+        position: "absolute",
+        left: 15,
+        top: 17,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    chevron: {
+        width: 30,
+        height: 30,
+        top: -10,
+        marginLeft: 25,
+        marginRight: 7,
+    },
+    chandoan: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    textchandoan: {
+        marginTop: 50,
+        width: 100,
+        textAlign: "center",
+        fontSize: 14,
+        fontFamily: "Poppins-Regular",
+        color: COLORS.black,
+    },
+    openCam: {
+        height: 55,
+        width: "70%",
+        backgroundColor: COLORS.darkGreen,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 10,
+        marginVertical: 10,
+        left: 50,
+    },
+    textTakephoto: {
+        color: COLORS.white,
+        fontFamily: "Poppins-Regular",
+        fontSize: 16,
+        marginLeft: 40,
+    },
+    camerao: {
+        width: 30,
+        height: 58,
+        position: "absolute",
+        left: 50,
+        top: 10,
     },
 });
 
