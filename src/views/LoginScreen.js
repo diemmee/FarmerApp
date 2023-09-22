@@ -59,7 +59,7 @@ const LoginScreen = ({ navigation }) => {
             try {
                 setLoading(false);
                 AsyncStorage.setItem("user", JSON.stringify(inputs));
-                navigation.navigate("Home");
+                navigation.navigate("Main");
             } catch (error) {
                 Alert.alert("Error", "bà sai chỗ nào rồi đó bà");
             }
