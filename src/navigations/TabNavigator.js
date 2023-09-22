@@ -4,7 +4,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 import HomeScreen from "../views/HomeScreen";
 import SearchScreen from "../views/SearchScreen";
-import SettingScreen from "../views/SettingScreen";
+import SettingScreen from "../views/UserScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +43,7 @@ const TabNavigator = () => {
                 component={SettingScreen}
                 options={{
                     tabBarIcon: ({ color }) => (
-                        <AntDesign name="setting" color={color} size={30} />
+                        <AntDesign name="user" color={color} size={30} />
                     ),
                 }}
             />

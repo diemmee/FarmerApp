@@ -6,6 +6,9 @@ import TabNavigator from "./TabNavigator";
 import SearchDetailsScreen from "../views/SearchDetailsScreen";
 import SearchScreen from "../views/SearchScreen";
 import OpenCamera from "../views/OpenCamera";
+import UserScreen from "../views/UserScreen";
+import LoginScreen from "../views/LoginScreen";
+import RegisterScreen from "../views/RegisterScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +27,13 @@ const MainNavigator = () => {
                     component={SearchDetailsScreen}
                 />
                 <Stack.Screen name="OpenCamera" component={OpenCamera} />
+                <Stack.Screen name="UserScreen" component={UserScreen} />
+                <Stack.Screen name="LoginScreen" component={LoginScreen} />
+
+                <Stack.Screen
+                    name="RegisterScreen"
+                    component={RegisterScreen}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
