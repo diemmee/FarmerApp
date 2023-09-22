@@ -91,6 +91,7 @@ const LoginScreen = ({ navigation }) => {
                     <View style={{ marginTop: 20 }}>
                         <Input
                             placeholder="Nhập vào địa chỉ email"
+                            placeholderTextColor="#000"
                             label="Email"
                             onFocus={() => {
                                 handleError(null, "email");
@@ -107,6 +108,7 @@ const LoginScreen = ({ navigation }) => {
                         <Input
                             placeholder="Nhập mật khẩu"
                             label="Mật khẩu"
+                            placeholderTextColor="#000"
                             onFocus={() => {
                                 handleError(null, "password");
                             }}

@@ -94,6 +94,7 @@ const RegisterScreen = ({ navigation }) => {
                     <View>
                         <Input
                             placeholder="Nhập vào địa chỉ email"
+                            placeholderTextColor="#000"
                             label="Email"
                             onFocus={() => {
                                 handleError(null, "email");
@@ -105,6 +106,7 @@ const RegisterScreen = ({ navigation }) => {
                         />
                         <Input
                             placeholder="Nhập vào Họ và Tên"
+                            placeholderTextColor="#000"
                             label="Họ và Tên"
                             onFocus={() => {
                                 handleError(null, "fullname");
@@ -120,6 +122,7 @@ const RegisterScreen = ({ navigation }) => {
                     <View>
                         <Input
                             placeholder="Nhập mật khẩu"
+                            placeholderTextColor="#000"
                             label="Mật khẩu"
                             onFocus={() => {
                                 handleError(null, "password");
