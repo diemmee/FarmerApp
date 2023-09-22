@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
     SafeAreaView,
@@ -118,17 +118,7 @@ const LoginScreen = ({ navigation }) => {
                             secureTextEntry={hidePassword ? false : true}
                         />
                         <TouchableOpacity
-                            style={{
-                                width: 50,
-                                height: 58,
-                                marginTop: 20,
-                                position: "absolute",
-                                right: 0,
-                                top: 20,
-                                justifyContent: "center",
-                                alignItems: "center",
-                                borderRadius: 10,
-                            }}
+                            style={styles.hidepass}
                             onPress={() => {
                                 setHidePassword(!hidePassword);
                             }}
@@ -153,13 +143,7 @@ const LoginScreen = ({ navigation }) => {
                                 onPress={() =>
                                     navigation.navigate("RegisterScreen")
                                 }
-                                style={{
-                                    color: COLORS.black,
-                                    fontSize: 16,
-                                    fontWeight: "bold",
-                                    textAlign: "center",
-                                    marginVertical: 10,
-                                }}
+                                style={styles.textRegister}
                             >
                                 Chưa có tài khoản? Đăng ký
                             </Text>
@@ -199,6 +183,24 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: "center",
         color: COLORS.darkGreen,
+    },
+    hidepass: {
+        width: 50,
+        height: 58,
+        marginTop: 20,
+        position: "absolute",
+        right: 0,
+        top: 20,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 10,
+    },
+    textRegister: {
+        color: COLORS.black,
+        fontSize: 16,
+        fontWeight: "bold",
+        textAlign: "center",
+        marginVertical: 10,
     },
 });
 
