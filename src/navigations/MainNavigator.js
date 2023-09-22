@@ -2,10 +2,11 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./TabNavigator";
+
 import SearchDetailsScreen from "../views/SearchDetailsScreen";
 import SearchScreen from "../views/SearchScreen";
-// import OpenCamera from "../views/OpenCamera";
-import CameraAction from "../views/CameraAction";
+import OpenCamera from "../views/OpenCamera";
+
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
@@ -22,7 +23,7 @@ const MainNavigator = () => {
                     name="SearchDetailsScreen"
                     component={SearchDetailsScreen}
                 />
-                <Stack.Screen name="CameraAction" component={CameraAction} />
+                <Stack.Screen name="OpenCamera" component={OpenCamera} />
             </Stack.Navigator>
         </NavigationContainer>
     );
